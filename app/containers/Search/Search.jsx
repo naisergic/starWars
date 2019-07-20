@@ -49,6 +49,9 @@ class Search extends React.PureComponent {
     if(!this.state.stopSearch){
       this.props.getPlanet(value)
     }
+    else{
+      alert('you cant search more than 15 times in a minute');
+    }
   }
   renderPlanets(){
     if(this.props.planets && this.props.planets.length){
