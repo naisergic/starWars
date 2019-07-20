@@ -13,3 +13,9 @@ export const makeSelectPlanet = ()=>{
     return planets.get('planets',false);
   })
 }
+
+export const makeSelectCount = ()=>{
+  return createSelector(selectUser,count=>{
+    return count.get('count',0);
+  })
+}

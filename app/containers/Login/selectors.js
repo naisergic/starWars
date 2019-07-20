@@ -17,7 +17,10 @@ export const makeSelectFetching = ()=>{
 
 export const makeSelectUserName = ()=>{
   return createSelector(selectUser,userName=>{
-    return userName.get('userName','');
+    if(userName){
+      return userName.get('userName','');
+    }
+    return '';
   })
 }
 

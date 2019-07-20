@@ -6,19 +6,23 @@
  *
  */
 import { fromJS } from 'immutable';
-import {FETCH_PLANTES_SUCCESS,FETCH_PLANTES_ERROR} from './constants'
+import {FETCH_PLANTES_SUCCESS,FETCH_PLANTES_ERROR,SET_COUNT} from './constants'
 
 export const initialState = fromJS({
   planets:'',
-  error:null
+  error:null,
+  count:0
 });
 
 function palnetReducer(state = initialState, {type,data,error,}) {
   switch(type){
     case FETCH_PLANTES_SUCCESS:
-      return state.set('planets',data.results);
+      let count = state.get('count');
+      return state.set('planets',data.results).set('count',++count);
     case FETCH_PLANTES_ERROR:
         return state.set('error',error);
+    case SET_COUNT:
+        return state.set('count',0);
     default:
       return state;
   }
