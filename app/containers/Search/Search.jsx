@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
+import debounce from 'lodash.debounce';
 import { createStructuredSelector } from 'reselect';
 import InjectReducer  from 'utils/injectReducer';
 import InjectSaga  from 'utils/injectSaga';
@@ -22,6 +23,8 @@ class Search extends React.PureComponent {
       stopSearch:false
     }
     this.handleChange = this.handleChange.bind(this);
+    this.fetchPlanet = this.fetchPlanet.bind(this);
+    this.debounceFetchAction = debounce(this.fetchPlanet,800);
     this.renderPlanets = this.renderPlanets.bind(this);
   }
   componentDidMount(){
@@ -46,8 +49,11 @@ class Search extends React.PureComponent {
     this.setState({
       searchTerm: value
     });
+    this.debounceFetchAction();
+  }
+  fetchPlanet(){
     if(!this.state.stopSearch){
-      this.props.getPlanet(value)
+      this.props.getPlanet(this.state.searchTerm)
     }
     else{
       alert('you cant search more than 15 times in a minute');
