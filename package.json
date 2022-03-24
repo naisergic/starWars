@@ -83,7 +83,7 @@
     "ip": "1.1.5",
     "lodash": "^4.17.15",
     "lodash.debounce": "^4.0.8",
-    "minimist": "1.2.0",
+    "minimist": "1.2.6",
     "prop-types": "15.7.2",
     "qs": "^6.7.0",
     "react": "16.8.6",
